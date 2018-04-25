@@ -1,0 +1,28 @@
+#experience{
+    span{
+        font-size: 0.8em;
+        margin-top: auto;
+        align-self: flex-end;
+    }
+    p{
+        text-align: justify;
+    }
+    img{
+        height: 80px;
+        align-self: flex-start;
+    }
+    em{
+        font-weight: 300;
+    }
+}
+
+#experience > div > div > div:nth-child(3){
+    margin-top: 30px;
+}
+
+@media screen and (min-width: $md-min-width)
+{
+    #experience > div > div > div:nth-child(3){
+            margin-top: 0px;
+        }
+}

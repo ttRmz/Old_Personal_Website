@@ -1,0 +1,56 @@
+footer{
+    position: relative;
+    padding: 4em;
+    background-color: $black;
+    i {
+        color: $light;
+    }
+}
+.footer__container{
+    flex-flow: row wrap;
+}
+.social{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.social__group{
+    display: flex;
+    margin: 0 10px;
+    justify-content: center;
+}
+
+.social__group--link{
+    box-sizing: border-box;
+    padding: 5px;
+    border: solid 2px $light;
+    transition: background-color .3s linear;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i{
+        transition: color .3s linear;
+    }
+}
+.social__group--link:hover{
+    background-color: $light;
+    i{
+        color: $black;
+    }
+}
+.copyrights,
+.version{
+    color: $grey;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    margin-top: 3em;
+}
+
+.version{
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+}

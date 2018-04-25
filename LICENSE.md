@@ -1,2 +1,4 @@
 
-Copyright (C) 2018 
+Copyright © 2018 Tristan Ramirez - All rights reserved
+
+
