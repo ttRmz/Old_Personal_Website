@@ -1,7 +1,15 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
+var livereload = require('gulp-livereload');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var csso = require('gulp-csso');
+var plumber = require("gulp-plumber");
+var connect = require('gulp-connect');
+
+// Paths
+var sassDir = './views/sass/';
+var cssDir = './public/src/style/';
 
 // Set the browser that you want to support
 const AUTOPREFIXER_BROWSERS = [
@@ -16,26 +24,45 @@ const AUTOPREFIXER_BROWSERS = [
     'bb >= 6'
 ];
 
-gulp.task('style', function () {
-    return gulp.src('./views/sass/*.scss')
-      // Compile SASS files
-      .pipe(sass({
-        outputStyle: 'nested',
-        precision: 10,
-        includePaths: ['.'],
-        onError: console.error.bind(console, 'Sass error:')
-      }))
-      // Auto-prefix css styles for cross browser compatibility
-      .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
-      // Minify the file
-      .pipe(csso())
-      // Output
-      .pipe(gulp.dest('./public/assets/css'))
-    }
-); 
+// Start local server with livereload set up
 
-gulp.task('style:watch', function () {
-  gulp.watch('./views/sass/**/*.scss', ['style']);
-  gulp.watch('./views/sass/**/*.sass', ['style']);
-  gulp.watch('./views/sass/*.scss', ['style']);
+gulp.task('connect', function () {
+    connect.server({
+        port: 8001,
+        livereload: true
+    });
 });
+
+gulp.task('style', function () {
+    gulp
+        // Input
+        .src(sassDir + '*.scss')
+
+        // Prevent pipe breaking caused by errors from gulp plugins
+        .pipe(plumber())
+
+        // SASS compiler
+        .pipe(sass({
+            outputStyle: 'mested'
+        }).on('error', sass.logError))
+
+        // Auto-prefix css styles for cross browser compatibility
+        .pipe(autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
+        
+        // Minify the file
+        .pipe(csso())
+        
+        // Output.pipe(plumber.stop())
+        .pipe(plumber.stop())
+        .pipe(gulp.dest(cssDir))
+
+        .pipe(livereload(['port:3001']));
+
+});
+
+gulp.task( 'watch', function () {
+    livereload.listen();
+    gulp.watch([sassDir + '/*.scss', sassDir + '/*.sass', sassDir + '/**/*.scss'], ['style']);
+});
+
+gulp.task('default', ['style', 'connect', 'watch']);
