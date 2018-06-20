@@ -25,6 +25,11 @@
         display: block;
         padding: 0.3em;
         box-sizing: border-box;
+        margin-top: 15px;
+        -webkit-filter: drop-shadow(0px 1px 1px rgba(0,0,0,.3));
+        filter: url(#drop-shadow);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=1, OffY=1, Color='#444')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=1, OffY=1, Color='#444')";
     }
     .skill-group__name{
         margin-top: 20px;

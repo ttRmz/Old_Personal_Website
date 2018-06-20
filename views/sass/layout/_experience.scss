@@ -6,9 +6,12 @@
     }
     p{
         text-align: justify;
+        a{
+            text-decoration: underline;
+        }
     }
     img{
-        height: 80px;
+        height: 70px;
         align-self: flex-start;
     }
     em{
