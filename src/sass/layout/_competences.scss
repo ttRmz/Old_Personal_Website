@@ -3,6 +3,18 @@
     justify-content: space-around;
   }
 
+  .skill__main-container {
+    position: relative;
+    margin-right: 48px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+    &:nth-child(2) {
+      margin-left: 48px;
+    }
+  }
+
   h4 {
     font-size: 1em;
     text-transform: uppercase;
@@ -25,6 +37,7 @@
 
   .skill-group-progress {
     position: relative;
+
     .skill-group__name {
       &::after {
         white-space: nowrap;
