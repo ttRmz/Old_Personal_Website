@@ -1,10 +1,11 @@
 {
-  "name": "new-portfolio",
+  "name": "ttrmz",
   "version": "3.2.5",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp",
+    "build": "gulp style"
   },
   "keywords": [],
   "author": "",
